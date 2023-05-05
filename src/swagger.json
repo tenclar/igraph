@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Igraph Documentation",
+    "description": "This is an API Rent",
+    "version:": "1.0.0",
+    "contact": {
+      "email": "andreyssonaraujo@gmail.com"
+    }
+  },
+  "paths": {
+    "/usuarios": {
+      "post": {
+        "tags": ["Usuarios"],
+        "summary": "Create a User",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "nickname": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "nivel": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "nome": "user name sample",
+                  "nickname": "user nickname sample",
+                  "email": "user email description sample",
+                  "password": "user password sample",
+                  "nivel": "user nivel sample",
+                  "status": "user status"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "[ERROR] User already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Usuarios"],
+        "summary": "List all users",
+        "description": "List all users",
+        "responses": {
+          "201": {
+            "description": "Sucess",
+
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": {
+                      "type": "string"
+                    },
+                    "nickname": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "nivel": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/import":{
+      "post": {
+        "tags":["Usuarios"],
+        "summary": "Upload a new Usuario",
+        "description": "Upload  a new Usuario",
+        "requestBody":{
+          "content":{
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties":{
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses":{
+          "201": {
+            "description":"Created"
+          }
+        }
+      }
+    },
+    "/unidades": {
+      "post": {
+        "tags":["unidade"],
+        "summary":"Create a new unity ",
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema":{
+                "$ref": "#/definitions/unidade"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"          
+          },
+          "500": {
+            "description": "Unidade already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Unidade": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string"
+        },
+        "data_inaugural" : {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

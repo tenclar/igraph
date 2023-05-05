@@ -1,0 +1,30 @@
+dia 11 de abril 
+-unidade inserida no swagger
+-Comecei a trabalhar na tabela de serviços acho que esta errada ;-;
+-Ultima ação no aquivo CreateServiçosContoller
+
+dia 13 de abril 
+-TRabalhei no serviçosRepositorio implementando a interface.
+-Fiz alteração no usuario.
+-Corrigi inconsistencias do banco.
+
+dia 14 de abril
+-Criado criptografia de senha.
+-Gerando tolken de usuario
+-inserindo ADM 
+
+dia 17 de abril
+-Finalizado rota de usuario 
+-Finalizado tolken de acesso de usuario
+-Realizado o tratamento de execções e erros.
+-FInalziando a tabela de usuario
+
+dia 18 de abril 
+- inicando a construção da tabela de atendimentos
+
+dia 19 de Abril
+- criando a entites, dtos e use cases da tabela de atendimentos
+
+dia 20 de abril
+-
+-
