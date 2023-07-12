@@ -1,13 +1,9 @@
-import { Atendimento } from "../entities/Atendimento"
-import { ICreateAtendimentoDTO } from "../dtos/IcreateAtendimentoDTO"
+import { Atendimento } from "../entities/Atendimento";
+import { ICreateAtendimentoDTO } from "../dtos/IcreateAtendimentoDTO";
 
 interface IAtendimentoRepository {
-  create({
-    data_de_Atendimento,
-    quantidade,
-    comentarios,
-  }: ICreateAtendimentoDTO): Promise<void>;
+  create(atendimento: Atendimento): Promise<void>;
   findOne(comentarios: string): Promise<Atendimento>;
+  listBySearch(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
 }
-
-export { IAtendimentoRepository , ICreateAtendimentoDTO};
+export { IAtendimentoRepository, ICreateAtendimentoDTO };

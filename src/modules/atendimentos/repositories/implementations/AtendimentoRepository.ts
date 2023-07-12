@@ -10,6 +10,16 @@ class AtendimentoRepository implements IAtendimentoRepository {
     this.repository = getRepository(Atendimento);
   }
 
+  async listBySearch(unidadeId: number, ano: number): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.createQueryBuilder("atendimento")
+      .where("atendimento.unidades_id LIKE :unidadeId", { unidadeId: `%${unidadeId}%` })
+        
+      .getMany();
+   
+    return atendimentos;
+  }
+  
+
   async create({ comentarios,data_de_Atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
     const atendimento = this.repository.create({
         comentarios, data_de_Atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
@@ -21,6 +31,7 @@ class AtendimentoRepository implements IAtendimentoRepository {
     const atendimentos = this.repository.findOne({comentarios});
     return atendimentos
   }
+  
 }
 
-export {AtendimentoRepository};
+export { AtendimentoRepository };

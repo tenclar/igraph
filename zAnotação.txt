@@ -25,6 +25,6 @@ dia 18 de abril
 dia 19 de Abril
 - criando a entites, dtos e use cases da tabela de atendimentos
 
-dia 20 de abril
--
+dia 10 de Julho
+- Criando rota de select para ligar ao frontEnd
 -
