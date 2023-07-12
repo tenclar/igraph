@@ -2,18 +2,23 @@ import { inject, injectable } from "tsyringe";
 import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 import { Atendimento } from "../../entities/Atendimento";
 
+interface IRequest {
+  mes: number;
+  ano: number;
+}
+
 @injectable()
-class ListAllAtendimentoUseCase {
+class ListAtendimentoByMonthAndYearUseCase {
   constructor(
     @inject("AtendimentoRepository")
     private atendimentoRepository: IAtendimentoRepository
   ) {}
 
-  async execute(): Promise<Atendimento[]> {
-    const atendimentos = await this.atendimentoRepository.listAll();
+  async execute({ mes, ano }: IRequest): Promise<Atendimento[]> {
+    const atendimentos = await this.atendimentoRepository.listByMonthAndYear(mes, ano);
 
     return atendimentos;
   }
 }
 
-export { ListAllAtendimentoUseCase };
+export { ListAtendimentoByMonthAndYearUseCase };

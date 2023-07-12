@@ -3,17 +3,17 @@ import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepositor
 import { Atendimento } from "../../entities/Atendimento";
 
 @injectable()
-class ListAllAtendimentoUseCase {
+class ListAtendimentoByYearUseCase {
   constructor(
     @inject("AtendimentoRepository")
     private atendimentoRepository: IAtendimentoRepository
   ) {}
 
-  async execute(): Promise<Atendimento[]> {
-    const atendimentos = await this.atendimentoRepository.listAll();
+  async execute(ano: number): Promise<Atendimento[]> {
+    const atendimentos = await this.atendimentoRepository.listByYear(ano);
 
     return atendimentos;
   }
 }
 
-export { ListAllAtendimentoUseCase };
+export { ListAtendimentoByYearUseCase };

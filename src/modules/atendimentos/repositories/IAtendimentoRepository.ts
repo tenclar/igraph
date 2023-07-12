@@ -6,7 +6,8 @@ interface IAtendimentoRepository {
   findOne(comentarios: string): Promise<Atendimento>;
   listAll(): Promise<Atendimento[]>;
   listBySearch(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
-  listByYear(): Promise<Atendimento[]>;  
+  listByYear(ano:number): Promise<Atendimento[]>;  
+  listByMonthAndYear(mes:number, ano:number) : Promise<Atendimento[]>
 
   //  listMonthByYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
 
