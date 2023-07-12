@@ -31,6 +31,11 @@ class AtendimentoRepository implements IAtendimentoRepository {
     const atendimentos = this.repository.findOne({comentarios});
     return atendimentos
   }
+
+  async listAll(): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.find();
+    return atendimentos;
+  }
   
 }
 

@@ -104,7 +104,7 @@ dist
 .tern-port
 
 docker/
-docker/db/data/#innodb_redo/#ib_redo15_tmp
+
 node_modules/
 
 
