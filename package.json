@@ -21,6 +21,7 @@
   "homepage": "https://github.com/tenclar/igraph#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "csv-parse": "^5.3.6",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",

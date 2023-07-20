@@ -7,11 +7,11 @@ import swaggerFile from "./swagger.json";
 import "./database";
 import "./shared/container";
 import { AppError } from "./errors/AppError";
-
-// Servidor rodando
-// Nosso servidor vai pegar importar as rotas para executar elas
+import cors from "cors"; // Importe o módulo cors
 
 const app = express();
+
+app.use(cors()); // Use o CORS antes das rotas
 
 app.use(express.json());
 
