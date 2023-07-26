@@ -1,7 +1,9 @@
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from "typeorm"
+import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("unidades")
 class Unidades {
+
+    @Generated("increment")
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -18,4 +20,4 @@ class Unidades {
     updated_at: Date;
 }
 
-export {Unidades}
+export { Unidades };

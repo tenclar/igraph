@@ -1,13 +1,13 @@
-import "reflect-metadata";
+import cors from "cors"; // Importe o módulo cors
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
-import { router } from "./routes";
+import "reflect-metadata";
 import swaggerUi from "swagger-ui-express";
-import swaggerFile from "./swagger.json";
 import "./database";
-import "./shared/container";
 import { AppError } from "./errors/AppError";
-import cors from "cors"; // Importe o módulo cors
+import { router } from "./routes";
+import "./shared/container";
+import swaggerFile from "./swagger.json";
 
 const app = express();
 
@@ -34,4 +34,4 @@ app.use(
   }
 );
 
-app.listen(8080, () => console.log("Servidor rodando"));
+app.listen(3333, () => console.log("Servidor rodando"));

@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateAuditoria1683049178764 implements MigrationInterface {
 
@@ -11,6 +11,8 @@ export class CreateAuditoria1683049178764 implements MigrationInterface {
                 name: "id",
                 type: "int",
                 isPrimary: true,
+                generationStrategy: "increment",
+                isGenerated:true
               },
               {
                 name: "ip",

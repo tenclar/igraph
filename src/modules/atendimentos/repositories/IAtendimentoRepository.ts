@@ -1,10 +1,10 @@
-import { Atendimento } from "../entities/Atendimento";
 import { ICreateAtendimentoDTO } from "../dtos/IcreateAtendimentoDTO";
+import { Atendimento } from "../entities/Atendimento";
 
 interface IAtendimentoRepository {
-  create(atendimento: Atendimento): Promise<void>;
-  findOne(comentarios: string): Promise<Atendimento>;
-  listAll(): Promise<Atendimento[]>;
+  create(atendimento: ICreateAtendimentoDTO): Promise<void>;
+  findOne(comentarios: string): Promise<Atendimento | undefined>;
+  findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined>
   listBySearch(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
   listByYear(ano:number): Promise<Atendimento[]>;  
   listByMonthAndYear(mes:number, ano:number) : Promise<Atendimento[]>
@@ -15,4 +15,4 @@ interface IAtendimentoRepository {
   // listByUnidadeMesAno(unidadeId: number, mes?: number, ano?: number): Promise<Atendimento[]>;
 
 }
-export { IAtendimentoRepository, ICreateAtendimentoDTO };
+export { IAtendimentoRepository };

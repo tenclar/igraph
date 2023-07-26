@@ -1,4 +1,3 @@
-import { autoInjectable } from "tsyringe";
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateAtendimento1681833147735 implements MigrationInterface {
@@ -11,11 +10,14 @@ export class CreateAtendimento1681833147735 implements MigrationInterface {
             name: "id",
             type: "int",
             isPrimary: true,
+            isGenerated: true,
+            generationStrategy: "increment",
+            
           },
           {
             name: "data_de_atendimento",
-            type: "timestamp",
-            default: "now()",
+            type: "date",
+            
           },
           {
             name: "quantidade",

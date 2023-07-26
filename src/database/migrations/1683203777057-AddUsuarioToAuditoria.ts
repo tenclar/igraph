@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm";
+import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from "typeorm";
 
 export class AddUsuarioToAuditoria1683203777057 implements MigrationInterface {
 
@@ -24,7 +24,7 @@ export class AddUsuarioToAuditoria1683203777057 implements MigrationInterface {
    }
 
    public async down(queryRunner: QueryRunner): Promise<void> {
-       await queryRunner.dropForeignKey("auditoria", "usuariofk")
+       await queryRunner.dropForeignKey("auditoria", "usuariosfk")
        await queryRunner.dropColumn('auditoria', 'usuario_id');
    }
 }

@@ -1,8 +1,10 @@
 
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("users")
 class User {
+  
+  @Generated("increment")
   @PrimaryGeneratedColumn()
   id:number;
 

@@ -1,15 +1,17 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn,UpdateDateColumn } from "typeorm";
-import { Unidades } from "../../unidade/entities/Unidades";
+import { Column, CreateDateColumn, Entity, Generated, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Servicos } from "../../servicos/entities/Servicos";
+import { Unidades } from "../../unidade/entities/Unidades";
 import { User } from "../../users/entities/User";
 
 @Entity("atendimentos")
 class Atendimento {
+
+  @Generated("increment")
   @PrimaryGeneratedColumn()
   id:number;
 
-  @CreateDateColumn()
-  data_de_Atendimento: Date;
+  @CreateDateColumn()    
+  data_de_atendimento: Date;
 
   @Column()
   quantidade: number;

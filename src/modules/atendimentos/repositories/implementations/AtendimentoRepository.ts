@@ -1,6 +1,7 @@
 import { getRepository, Repository } from "typeorm";
+import { ICreateAtendimentoDTO } from "../../dtos/IcreateAtendimentoDTO";
 import { Atendimento } from "../../entities/Atendimento";
-import { ICreateAtendimentoDTO, IAtendimentoRepository } from "../IAtendimentoRepository";
+import { IAtendimentoRepository } from "../IAtendimentoRepository";
 
 
 class AtendimentoRepository implements IAtendimentoRepository {
@@ -20,16 +21,26 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
   
 
-  async create({ comentarios,data_de_Atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
+  async create({ comentarios,data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
     const atendimento = this.repository.create({
-        comentarios, data_de_Atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
+        comentarios, data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
     });
     await this.repository.save(atendimento)
   }
 
-  async findOne(comentarios: string): Promise<Atendimento> {
+  async findOne(comentarios: string): Promise<Atendimento | undefined> {
     const atendimentos = this.repository.findOne({comentarios});
     return atendimentos
+  }
+
+  async findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined> {
+    const atendimento = this.repository.findOne({
+      where: {
+        data_de_atendimento,
+        unidades_id: unidadesId
+      }
+    })
+    return atendimento
   }
 
   //Lista tudo
@@ -40,8 +51,8 @@ class AtendimentoRepository implements IAtendimentoRepository {
 
   async listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]> {
     const atendimentos = await this.repository.createQueryBuilder("atendimento")
-      .where("MONTH(atendimento.data_de_Atendimento) = :mes", { mes })
-      .andWhere("YEAR(atendimento.data_de_Atendimento) = :ano", { ano })
+      .where("MONTH(atendimento.data_de_atendimento) = :mes", { mes })
+      .andWhere("YEAR(atendimento.data_de_atendimento) = :ano", { ano })
       .getMany();
     
     return atendimentos;
@@ -49,7 +60,7 @@ class AtendimentoRepository implements IAtendimentoRepository {
   
   async listByYear(ano: number): Promise<Atendimento[]> {
     const atendimentos = await this.repository.createQueryBuilder("atendimento")
-      .where("YEAR(atendimento.data_de_Atendimento) = :ano", { ano })
+      .where("YEAR(atendimento.data_de_atendimento) = :ano", { ano })
       .getMany();
     
     return atendimentos;

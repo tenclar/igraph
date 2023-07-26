@@ -1,10 +1,10 @@
 import { inject, injectable } from "tsyringe";
-import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 import { AppError } from "../../../../errors/AppError";
+import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 
 interface IRequest {
   quantidade: number;
-  data_de_Atendimento: Date;
+  data_de_atendimento: Date;
   comentarios: string;
   usuarios_id: number;
   servicos_id: number;
@@ -18,8 +18,8 @@ class CreateAtendimentoUseCase {
     private atendimentoRepository: IAtendimentoRepository
   ) {}
 
-  async execute({ quantidade, data_de_Atendimento, comentarios, usuarios_id, servicos_id, unidades_id }: IRequest): Promise<void> {
-    const atendimentoAlreadyExist = await this.atendimentoRepository.findOne(comentarios);
+  async execute({ quantidade, data_de_atendimento, comentarios, usuarios_id, servicos_id, unidades_id }: IRequest): Promise<void> {
+    const atendimentoAlreadyExist = await this.atendimentoRepository.findByDateAndUnidade(data_de_atendimento, unidades_id);
 
     if (atendimentoAlreadyExist) {
       throw new AppError("Atendimento já existe");
@@ -27,7 +27,7 @@ class CreateAtendimentoUseCase {
 
     const atendimento = {
       quantidade,
-      data_de_Atendimento,
+      data_de_atendimento,
       comentarios,
       usuarios_id,
       unidades_id,
