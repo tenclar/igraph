@@ -5,9 +5,10 @@ interface IAtendimentoRepository {
   create(atendimento: ICreateAtendimentoDTO): Promise<void>;
   findOne(comentarios: string): Promise<Atendimento | undefined>;
   findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined>
-  listBySearch(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
+  listByUnidadeIdMonthYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
   listByYear(ano:number): Promise<Atendimento[]>;  
-  listByMonthAndYear(mes:number, ano:number) : Promise<Atendimento[]>
+  listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]>
+  listAll(): Promise<Atendimento[]>
 
   //  listMonthByYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
 

@@ -10,16 +10,7 @@ class AtendimentoRepository implements IAtendimentoRepository {
   constructor() {
     this.repository = getRepository(Atendimento);
   }
-  //Pesquisa por todos os dados
-  async listBySearch(unidadeId: number, ano: number): Promise<Atendimento[]> {
-    const atendimentos = await this.repository.createQueryBuilder("atendimento")
-      .where("atendimento.unidades_id LIKE :unidadeId", { unidadeId: `%${unidadeId}%` })
-        
-      .getMany();
-   
-    return atendimentos;
-  }
-  
+    
 
   async create({ comentarios,data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
     const atendimento = this.repository.create({
@@ -27,6 +18,14 @@ class AtendimentoRepository implements IAtendimentoRepository {
     });
     await this.repository.save(atendimento)
   }
+
+  //Lista tudo
+  async listAll(): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.find();
+    return atendimentos;
+  }
+
+
 
   async findOne(comentarios: string): Promise<Atendimento | undefined> {
     const atendimentos = this.repository.findOne({comentarios});
@@ -43,21 +42,6 @@ class AtendimentoRepository implements IAtendimentoRepository {
     return atendimento
   }
 
-  //Lista tudo
-  async listAll(): Promise<Atendimento[]> {
-    const atendimentos = await this.repository.find();
-    return atendimentos;
-  }
-
-  async listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]> {
-    const atendimentos = await this.repository.createQueryBuilder("atendimento")
-      .where("MONTH(atendimento.data_de_atendimento) = :mes", { mes })
-      .andWhere("YEAR(atendimento.data_de_atendimento) = :ano", { ano })
-      .getMany();
-    
-    return atendimentos;
-  }
-  
   async listByYear(ano: number): Promise<Atendimento[]> {
     const atendimentos = await this.repository.createQueryBuilder("atendimento")
       .where("YEAR(atendimento.data_de_atendimento) = :ano", { ano })
@@ -65,6 +49,30 @@ class AtendimentoRepository implements IAtendimentoRepository {
     
     return atendimentos;
   }
+
+  async listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]> {
+        
+    
+    const atendimentos = await this.repository.createQueryBuilder("atendimento")
+      .where("MONTH(atendimento.data_de_atendimento) like :mes", { mes: `%${mes}%`})
+      .andWhere("YEAR(atendimento.data_de_atendimento) like :ano", { ano: `%${ano}%`})
+      .getMany();
+    
+    return atendimentos;
+  }
+
+
+  //Pesquisa por todos os dados
+  async listByUnidadeIdMonthYear(unidadeId: number, mes:number, ano: number): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.createQueryBuilder("atendimento")
+      .where("atendimento.unidades_id LIKE :unidadeId", { unidadeId: `%${unidadeId}%` })
+      .andWhere("atendimento.data_de_atendimento : dataatendimento", {dataatendimento: `%${ano-mes}`})
+      .getMany();
+   
+    return atendimentos;
+  }
+  
+
   
   
 }

@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 import { AppError } from "../../../../errors/AppError";
 import { Atendimento } from "../../entities/Atendimento";
+import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 
 interface IRequest {
   unidadeId: number;
@@ -10,14 +10,14 @@ interface IRequest {
 }
 
 @injectable()
-class ListAtendimentoUseCase {
+class ListAtendimentoByUnidadeIdMonthYearUseCase {
   constructor(
     @inject("AtendimentoRepository")
     private atendimentoRepository: IAtendimentoRepository
   ) {}
 
   async execute({ unidadeId, ano, mes }: IRequest): Promise<Atendimento[]> {
-    const atendimentos = await this.atendimentoRepository.listBySearch(unidadeId, ano, mes);
+    const atendimentos = await this.atendimentoRepository.listByUnidadeIdMonthYear(unidadeId, ano, mes);
 
     if (!atendimentos) {
       throw new AppError("Atendimento não encontrado");
@@ -27,4 +27,4 @@ class ListAtendimentoUseCase {
   }
 }
 
-export { ListAtendimentoUseCase };
+export { ListAtendimentoByUnidadeIdMonthYearUseCase };

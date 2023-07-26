@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 import { Atendimento } from "../../entities/Atendimento";
+import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
 
 interface IRequest {
   mes: number;
