@@ -4,7 +4,7 @@ import { ICreateUnidadeDTO } from "../dtos/IcreateUnidadeDTO";
 
 interface IUnidadeRepository {
     create({data_inaugural, nome}: ICreateUnidadeDTO): Promise<void>;
-    findByName(nome: string): Promise <Unidades>;
+    findByName(nome: string): Promise <Unidades |undefined>;
     list(): Promise<Unidades[]>;
 }
 

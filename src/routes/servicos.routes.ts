@@ -6,7 +6,7 @@ const servicosRoutes = Router();
 
 const createServicosController = new CreateServicoController()
 
-servicosRoutes.use(ensureAuthenticated)
+//servicosRoutes.use(ensureAuthenticated)
 servicosRoutes.post("/", createServicosController.handle);
 
 export { servicosRoutes };

@@ -31,7 +31,7 @@ class AuditoriaRepository implements IAuditoriaRepository {
     await this.repositroy.save(auditoria);
   }
 
-  async findOne(tipo_acao: string): Promise<Auditoria> {
+  async findOne(tipo_acao: string): Promise<Auditoria | undefined> {
     const auditoria = this.repositroy.findOne({ tipo_acao });
     return auditoria;
   }

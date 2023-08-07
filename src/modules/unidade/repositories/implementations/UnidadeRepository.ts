@@ -17,7 +17,7 @@ class UnidadeRepository implements IUnidadeRepository {
     await this.repository.save(unidade);
   }
 
-  async findByName(nome: string): Promise<Unidades> {
+  async findByName(nome: string): Promise<Unidades | undefined> {
     const unidade = this.repository.findOne({ nome });
     return unidade;
   }

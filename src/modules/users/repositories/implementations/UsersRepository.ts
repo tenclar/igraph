@@ -40,20 +40,20 @@ class UsersRepository implements IUsersRepository {
   }
 
   // fazer consulta atravez do nome do usuario
-  async findByName(nome: string): Promise<User> {
+  async findByName(nome: string): Promise<User | undefined> {
     const usuario = await this.repository.findOne({ nome });
     return usuario;
   }
-  async findByNick(nickname: string): Promise<User> {
+  async findByNick(nickname: string): Promise<User | undefined> {
     const usuario = await this.repository.findOne({ nickname });
     return usuario;
   }
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | undefined> {
     const usuario = await this.repository.findOne({ email });
     return usuario;
   }
 
-  async findById(id: number): Promise<User> {
+  async findById(id: number): Promise<User | undefined> {
     const usuario = await this.repository.findOne({ id });
     return usuario;
   }

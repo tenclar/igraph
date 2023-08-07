@@ -25,10 +25,7 @@ export class CreateAtendimento1681833147735 implements MigrationInterface {
             default:0
           },
           /*Chaves estrangeiras*/
-          {
-            name: "comentarios",
-            type: "varchar",
-          },
+          
           {
             name: "created_at",
             type: "timestamp",

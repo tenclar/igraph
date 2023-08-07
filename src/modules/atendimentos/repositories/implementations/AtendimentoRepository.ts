@@ -12,9 +12,9 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
     
 
-  async create({ comentarios,data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
+  async create({ data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
     const atendimento = this.repository.create({
-        comentarios, data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
+         data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
     });
     await this.repository.save(atendimento)
   }
@@ -26,12 +26,12 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
 
 
-
+/*
   async findOne(comentarios: string): Promise<Atendimento | undefined> {
     const atendimentos = this.repository.findOne({comentarios});
     return atendimentos
   }
-
+*/
   async findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined> {
     const atendimento = this.repository.findOne({
       where: {

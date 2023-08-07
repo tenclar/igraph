@@ -7,7 +7,6 @@ class Servicos {
     @PrimaryGeneratedColumn()
     id: number;
 
-
     @Column()
     nome: string;
 

@@ -10,7 +10,7 @@ interface IAuditoriaRepository {
         usuario_id,
         id_tabela
     }: ICreateAuditoriaDTO): Promise<void>;
-    findOne(tipo_acao: string) :Promise<Auditoria>;
+    findOne(tipo_acao: string) :Promise<Auditoria | undefined>;
 }
 
 export{IAuditoriaRepository, ICreateAuditoriaDTO}
