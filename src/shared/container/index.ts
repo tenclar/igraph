@@ -10,7 +10,8 @@ import { IAtendimentoRepository } from "../../modules/atendimentos/repositories/
 import { AtendimentoRepository } from "../../modules/atendimentos/repositories/implementations/AtendimentoRepository";
 import { AuditoriaRepository } from "../../modules/auditoria/repositories/implementations/AuditoriaRepository";
 import { IAuditoriaRepository } from "../../modules/auditoria/repositories/IAuditoriaRepository";
-
+import { IComentariosRepository } from "../../modules/comentarios/repositories/IComentariosRepository";
+import { ComentariosRepository } from "../../modules/comentarios/repositories/implementations/ComentariosRepository";
 // Users
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -31,4 +32,9 @@ container.registerSingleton<IAtendimentoRepository>(
 container.registerSingleton<IAuditoriaRepository>(
   "AuditoriaRepository",
   AuditoriaRepository
+);
+
+container.registerSingleton<IComentariosRepository>(
+  "ComentariosRepository",
+  ComentariosRepository
 );

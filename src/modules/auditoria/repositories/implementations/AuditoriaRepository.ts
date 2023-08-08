@@ -35,6 +35,11 @@ class AuditoriaRepository implements IAuditoriaRepository {
     const auditoria = this.repositroy.findOne({ tipo_acao });
     return auditoria;
   }
+
+  async list(): Promise<Auditoria[]> {
+    const auditoria = await this.repositroy.find();
+    return auditoria;
+  }
 }
 
 export { AuditoriaRepository };

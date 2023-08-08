@@ -11,6 +11,7 @@ interface IAuditoriaRepository {
         id_tabela
     }: ICreateAuditoriaDTO): Promise<void>;
     findOne(tipo_acao: string) :Promise<Auditoria | undefined>;
+    list() :Promise <Auditoria[]>
 }
 
 export{IAuditoriaRepository, ICreateAuditoriaDTO}
