@@ -28,3 +28,5 @@ dia 19 de Abril
 dia 10 de Julho
 - Criando rota de select para ligar ao frontEnd
 -
+dia 14 de agosto
+- codigo em nova maquina
