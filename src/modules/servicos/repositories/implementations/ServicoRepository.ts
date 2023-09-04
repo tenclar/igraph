@@ -16,10 +16,20 @@ class ServicoRepository implements IServicosRepository {
     });
     await this.repository.save(servico);    
   }
+  
+  async list(): Promise<Servicos[]> {
+    const servicos = await this.repository.find();
+    return servicos
+  }
 
   async findByName(nome: string): Promise<Servicos> {
-    const servicos = this.repository.findOne({nome});
-    return servicos
+    const servicos = await this.repository.findOne({ nome });
+
+    if (!servicos) {
+      throw new Error(`Servico with name ${nome} not found`);
+    }
+
+    return servicos;
   }
 }
 

@@ -7,5 +7,5 @@ const authenticateRoutes = Router();
 const authenticateUserController = new AuthenticateUserController();
 
 authenticateRoutes.post("/sessions", authenticateUserController.handle);
-
+authenticateRoutes.get("/sessions")
 export {authenticateRoutes};
