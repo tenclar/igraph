@@ -4,7 +4,7 @@ interface ICreateUserDTO {
     email: string;
     nickname: string;
     nivel: number;
-    status:string;
+    status:number;
     id?: number;
     avatar?: string;
 }

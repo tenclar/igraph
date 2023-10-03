@@ -24,7 +24,7 @@ class User {
   nivel: number;  
 
   @Column()
-  status: string;  
+  status: number;
 
   //tive que declarar tal caracteristica nessa coluna.
   /*

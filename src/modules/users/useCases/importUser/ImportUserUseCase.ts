@@ -7,7 +7,7 @@ interface IImportUser {
   nome: string;
   nivel: string;
   nickname: string;
-  status: string;
+  status: number;
   password: string;
   email: string;
 }
