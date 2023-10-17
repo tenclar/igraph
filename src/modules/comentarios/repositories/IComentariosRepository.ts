@@ -5,7 +5,7 @@ interface IComentariosRepository {
     create({
         comentarios,
     }: ICreateComentariosDTO): Promise<void>;
-    list(): Promise<Comentarios[] | undefined>;
+    list(): Promise<Comentarios[] |[]>;
 }
 
 export{IComentariosRepository, ICreateComentariosDTO}

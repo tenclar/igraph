@@ -6,6 +6,8 @@ const comentariosRoutes = Router();
 
 const comentariosUserController = new CreateComentariosController()
 
-comentariosRoutes.get("/", comentariosUserController.handle)
+comentariosRoutes.get("/:atendimento", comentariosUserController.handle)
+comentariosRoutes.post("/", comentariosUserController.handle)
+
 
 export {comentariosRoutes}
