@@ -3,7 +3,7 @@ import { IComentariosRepository } from "../../repositories/IComentariosRepositor
 import { Comentarios } from "../../entities/Comentarios";
 
 @injectable()
-class ListComentarios {
+class ListComentariosUseCase {
     constructor(
         @inject("ComentariosRepository")
         private comentariosRepository: IComentariosRepository
@@ -15,7 +15,7 @@ class ListComentarios {
     }
 } 
 
-export {ListComentarios}
+export {ListComentariosUseCase}
 
 
 
