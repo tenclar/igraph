@@ -9,9 +9,10 @@ class CreateAtendimentoController {
             
         const createAtendimentoUseCase = container.resolve(CreateAtendimentoUseCase);
 
-        await createAtendimentoUseCase.execute({comentarios, quantidade, data_de_atendimento,unidades_id, servicos_id, usuarios_id });
+        const atendimento = await createAtendimentoUseCase.execute({comentarios, quantidade, data_de_atendimento,unidades_id, servicos_id, usuarios_id });
 
-        return response.status(201).send()
+        return response.status(201).send(atendimento)
+        // return response.json(atendimentos);
     }
 }
 export { CreateAtendimentoController };

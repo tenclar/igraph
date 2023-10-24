@@ -12,11 +12,12 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
     
 
-  async create({ data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<void> {
-    const atendimento = this.repository.create({
+  async create({ data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<Atendimento> {
+    const novoatendimento = this.repository.create({
          data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id 
     });
-    await this.repository.save(atendimento)
+   const atendimento =  await this.repository.save(novoatendimento)
+   return atendimento
   }
 
   //Lista tudo

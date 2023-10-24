@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 import { Comentarios } from "../../entities/Comentarios";
-import { IComentariosRepository} from "../IComentariosRepository";
-import { ICreateComentariosDTO } from "../IComentariosRepository"; 
+import { IComentariosRepository } from "../IComentariosRepository";
+import { ICreateComentariosDTO } from "../IComentariosRepository";
 
 class ComentariosRepository implements IComentariosRepository {
   private repository: Repository<Comentarios>;
@@ -10,15 +10,20 @@ class ComentariosRepository implements IComentariosRepository {
     this.repository = getRepository(Comentarios);
   }
 
-  async create({ comentarios }: ICreateComentariosDTO): Promise<void> {
+  async create({ comentarios, atendimentos_id }: ICreateComentariosDTO): Promise<Comentarios> {
+    
     const comentario = this.repository.create({
       comentarios,
+      atendimentos_id
     });
+    console.log(comentario)
+    await this.repository.save(comentario); // Persiste o comentário no banco de dados
+
+    return comentario; // Retorna o comentário criado, incluindo o ID
   }
 
-  async list(): Promise<Comentarios[] | undefined> {
-    const comentariosList = await this.repository.find();
-    return comentariosList;
+  async list(): Promise<Comentarios[]> {
+    return await this.repository.find();
   }
 }
 

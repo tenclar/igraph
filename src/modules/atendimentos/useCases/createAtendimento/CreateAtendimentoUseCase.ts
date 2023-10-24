@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { IAtendimentoRepository } from "../../repositories/IAtendimentoRepository";
+import { Atendimento } from "../../entities/Atendimento";
 
 interface IRequest {
   quantidade: number;
@@ -18,14 +19,14 @@ class CreateAtendimentoUseCase {
     private atendimentoRepository: IAtendimentoRepository
   ) {}
 
-  async execute({ quantidade, data_de_atendimento, comentarios, usuarios_id, servicos_id, unidades_id }: IRequest): Promise<void> {
+  async execute({ quantidade, data_de_atendimento, comentarios, usuarios_id, servicos_id, unidades_id }: IRequest): Promise<Atendimento> {
     const atendimentoAlreadyExist = await this.atendimentoRepository.findByDateAndUnidade(data_de_atendimento, unidades_id);
 
     if (atendimentoAlreadyExist) {
       throw new AppError("Atendimento já existe");
     }
 
-    const atendimento = {
+    const novoAtendimento = {
       quantidade,
       data_de_atendimento,
       comentarios,
@@ -34,7 +35,8 @@ class CreateAtendimentoUseCase {
       servicos_id
     };
 
-    await this.atendimentoRepository.create(atendimento);
+    const atendimento = await this.atendimentoRepository.create(novoAtendimento);
+    return atendimento
   }
 }
 

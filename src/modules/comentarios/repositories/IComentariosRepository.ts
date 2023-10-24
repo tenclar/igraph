@@ -2,10 +2,9 @@ import { Comentarios } from "../entities/Comentarios";
 import { ICreateComentariosDTO } from "../dtos/IcreateComentariosDTO";
 
 interface IComentariosRepository {
-    create({
-        comentarios,
-    }: ICreateComentariosDTO): Promise<void>;
-    list(): Promise<Comentarios[] |[]>;
-}
-
-export{IComentariosRepository, ICreateComentariosDTO}
+    create({ comentarios, atendimentos_id }: ICreateComentariosDTO): Promise<Comentarios>; // Atualize o tipo de retorno para Promise<Comentarios>
+  
+    list(): Promise<Comentarios[]>;
+  }
+  
+  export { IComentariosRepository , ICreateComentariosDTO};

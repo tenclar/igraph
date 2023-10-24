@@ -2,7 +2,7 @@ import { ICreateAtendimentoDTO } from "../dtos/IcreateAtendimentoDTO";
 import { Atendimento } from "../entities/Atendimento";
 
 interface IAtendimentoRepository {
-  create(atendimento: ICreateAtendimentoDTO): Promise<void>;
+  create(atendimento: ICreateAtendimentoDTO): Promise<Atendimento>;
   //findOne(comentarios: string): Promise<Atendimento | undefined>;
   findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined>
   listByUnidadeIdMonthYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;

@@ -20,6 +20,17 @@ export class CreateComentarios1691161065251 implements MigrationInterface {
                         name:"comentarios",
                         type:"text",
                     }
+                    ,
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                      },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
+                        default: "now()"
+                    }
                 ]
             })
         )
