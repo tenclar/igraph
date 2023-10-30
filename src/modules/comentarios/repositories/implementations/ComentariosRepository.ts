@@ -25,6 +25,15 @@ class ComentariosRepository implements IComentariosRepository {
   async list(): Promise<Comentarios[]> {
     return await this.repository.find();
   }
+
+  async showByAtendimento(atendimentosId: number): Promise<Comentarios | undefined> {
+    return await this.repository.findOne(
+      { 
+         where: {      
+          atendimentos_id: atendimentosId
+      }
+    });
+  }
 }
 
 export { ComentariosRepository };
