@@ -11,15 +11,12 @@ class ComentariosRepository implements IComentariosRepository {
   }
 
   async create({ comentarios, atendimentos_id }: ICreateComentariosDTO): Promise<Comentarios> {
-    
     const comentario = this.repository.create({
       comentarios,
       atendimentos_id
     });
-    console.log(comentario)
-    await this.repository.save(comentario); // Persiste o comentário no banco de dados
-
-    return comentario; // Retorna o comentário criado, incluindo o ID
+    await this.repository.save(comentario);
+    return comentario;
   }
 
   async list(): Promise<Comentarios[]> {
@@ -27,12 +24,19 @@ class ComentariosRepository implements IComentariosRepository {
   }
 
   async showByAtendimento(atendimentosId: number): Promise<Comentarios | undefined> {
-    return await this.repository.findOne(
-      { 
-         where: {      
-          atendimentos_id: atendimentosId
+    return await this.repository.findOne({
+      where: {
+        atendimentos_id: atendimentosId
       }
     });
+  }
+
+  async findOne(id: number): Promise<Comentarios | undefined> {
+    return await this.repository.findOne(id);
+  }
+
+  async save(comentario: Comentarios): Promise<Comentarios> {
+    return await this.repository.save(comentario);
   }
 }
 

@@ -10,6 +10,10 @@ class AtendimentoRepository implements IAtendimentoRepository {
   constructor() {
     this.repository = getRepository(Atendimento);
   }
+  
+  save(atendimento: Atendimento): Promise<Atendimento> {
+    throw new Error("Method not implemented.");
+  }
     
 
   async create({ data_de_atendimento,quantidade, servicos_id, usuarios_id,unidades_id }: ICreateAtendimentoDTO): Promise<Atendimento> {
@@ -27,12 +31,12 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
 
 
-/*
-  async findOne(comentarios: string): Promise<Atendimento | undefined> {
-    const atendimentos = this.repository.findOne({comentarios});
+
+  async findOne(id: number): Promise<Atendimento | undefined> {
+    const atendimentos = this.repository.findOne(id);
     return atendimentos
-  }
-*/
+  }   
+
   async findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined> {
     const atendimento = this.repository.findOne({
       where: {

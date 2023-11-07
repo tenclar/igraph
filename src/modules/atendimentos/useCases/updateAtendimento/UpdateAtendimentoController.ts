@@ -7,7 +7,7 @@ class UpdateAtendimentoController {
     async  handle(req: Request, res: Response) {
       try {
         const atendimentoId = req.params.id;
-        const { quantidade, comentario } = req.body;
+        const { quantidade } = req.body;
     
         // Use o repositório padrão
         const atendimentoRepository = getRepository(Atendimento);
