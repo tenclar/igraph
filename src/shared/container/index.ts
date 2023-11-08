@@ -26,7 +26,7 @@ container.registerSingleton<IServicosRepository>(
   ServicoRepository
 );
 container.registerSingleton<IAtendimentoRepository>(
-  "AtendimentoRepository",
+  "AtendimentoRepository", 
   AtendimentoRepository
 );
 container.registerSingleton<IAuditoriaRepository>(

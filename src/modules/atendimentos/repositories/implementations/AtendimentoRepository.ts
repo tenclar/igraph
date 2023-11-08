@@ -2,6 +2,7 @@ import { getRepository, Repository } from "typeorm";
 import { ICreateAtendimentoDTO } from "../../dtos/IcreateAtendimentoDTO";
 import { Atendimento } from "../../entities/Atendimento";
 import { IAtendimentoRepository } from "../IAtendimentoRepository";
+import { Comentarios } from "../../../comentarios/entities/Comentarios";
 
 
 class AtendimentoRepository implements IAtendimentoRepository {
@@ -10,7 +11,7 @@ class AtendimentoRepository implements IAtendimentoRepository {
   constructor() {
     this.repository = getRepository(Atendimento);
   }
-  
+
   save(atendimento: Atendimento): Promise<Atendimento> {
     throw new Error("Method not implemented.");
   }
@@ -76,9 +77,19 @@ class AtendimentoRepository implements IAtendimentoRepository {
    
     return atendimentos;
   }
+
+  async delete(atendimento: Atendimento): Promise<void> {
+    await this.repository.remove(atendimento);
+  }
+
+   async deleteRelatedComentarios(atendimento: Atendimento): Promise<void> {
+    const comentariosRepository = getRepository(Comentarios);
+    const comentarios = await comentariosRepository.find({where: {atendimentos_id: atendimento.id}});
+
+    await comentariosRepository.remove(comentarios)
+  }
   
 
-  
   
 }
 
