@@ -6,6 +6,8 @@ interface IAtendimentoRepository {
   findOne(id: number): Promise<Atendimento | undefined>; // Adicione esta função
   save(atendimento: Atendimento): Promise<Atendimento>;
   delete(atendimento: Atendimento): Promise<void>;
+  deleteRelatedComentarios(atendimento: Atendimento): Promise<void>; // Adicione esta linha
+
   // findOne(comentarios: string): Promise<Atendimento | undefined>;
   
   findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined>
