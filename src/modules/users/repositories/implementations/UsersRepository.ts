@@ -11,6 +11,9 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repository = getRepository(User);
   }
+  save(usuario: User): Promise<User[]> {
+    throw new Error("Method not implemented.");
+  }
 
   async create({
     id,
