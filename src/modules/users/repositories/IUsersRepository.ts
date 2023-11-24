@@ -6,6 +6,7 @@ interface IUsersRepository {
   findByNick(nickname: string): Promise<User | undefined>;
   findByEmail(email: string):Promise<User | undefined>;
   findById(id: number):Promise<User | undefined>;
+  save(usuario: User) : Promise<User[]>
   list(): Promise <User[]>;
   create({nome, nivel, nickname, status, password, email}: ICreateUserDTO): void ;
 }
