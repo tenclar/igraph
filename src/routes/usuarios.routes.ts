@@ -25,7 +25,7 @@ usuariosRoutes.post("/", createUserController.handle);
 /* Agora essa rota vai retornar de listUserControler onde faz a listagem de usuarios*/
 usuariosRoutes.get("/", listUserController.handle);
 // Atualizar
-usuariosRoutes.put("/", updateUserController.handle)
+usuariosRoutes.put("/:id", updateUserController.handle)
 
 usuariosRoutes.post(
   "/import",
