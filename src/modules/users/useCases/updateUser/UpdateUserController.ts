@@ -7,7 +7,7 @@ class UpdateUserController {
     async handle(req: Request, res: Response) {
         try {
             const userId = req.params.id;
-            const {nome, nivel, status} = req.body;
+            const {nome, nivel, status, nickname, password} = req.body;
 
             const usersRepository = getRepository(User);
 
@@ -20,6 +20,8 @@ class UpdateUserController {
             usuario.nome = nome
             usuario.nivel = nivel
             usuario.status = status
+            usuario.nickname = nickname
+            usuario.password = password
 
             await usersRepository.save(usuario);
             return res.status(200).json({message: "Usuario atualizado com sucesso"});

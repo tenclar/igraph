@@ -60,5 +60,7 @@ class UsersRepository implements IUsersRepository {
     const usuario = await this.repository.findOne({ id });
     return usuario;
   }
+
+  
 }
 export { UsersRepository };
