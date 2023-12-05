@@ -16,4 +16,4 @@ class CreateServicoController {
     }
 }
 
-export {CreateServicoController}
+export { CreateServicoController }

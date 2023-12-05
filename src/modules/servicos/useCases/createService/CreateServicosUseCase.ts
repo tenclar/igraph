@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IServicosRepository } from "../../repositories/IServicosRepository";
+import { AppError } from "../../../../errors/AppError";
 
 interface IRequest {
   nome: string;
@@ -13,7 +14,14 @@ class CreateServicoUseCase {
     private servicoRepository: IServicosRepository
   ) {}
   async execute({ nome }: IRequest): Promise<void> {
-    const servicoAlreadyExists = await this.servicoRepository.findByName(nome);
+    
+     const servicoAlreadyExists = await this.servicoRepository.findByName(nome);
+
+
+    if (servicoAlreadyExists) {
+      throw new AppError("Serviço Ja existe");
+    
+  }
 
     await this.servicoRepository.create({
       nome,

@@ -1,7 +1,7 @@
 import { request, response, Router } from "express";
 import { CreateServicoController } from "../modules/servicos/useCases/createService/CreateServicosController";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { GetServicosController } from "../modules/servicos/useCases/createService/ListServicos/GetServicosController";
+import { GetServicosController } from "../modules/servicos/useCases/ListServicos/GetServicosController";
 
 const servicosRoutes = Router();
 

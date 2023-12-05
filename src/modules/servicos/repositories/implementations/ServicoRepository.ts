@@ -22,12 +22,12 @@ class ServicoRepository implements IServicosRepository {
     return servicos
   }
 
-  async findByName(nome: string): Promise<Servicos> {
+  async findByName(nome: string): Promise<Servicos | undefined> {
     const servicos = await this.repository.findOne({ nome });
 
-    if (!servicos) {
+   /*  if (!servicos) {
       throw new Error(`Servico with name ${nome} not found`);
-    }
+    } */
 
     return servicos;
   }

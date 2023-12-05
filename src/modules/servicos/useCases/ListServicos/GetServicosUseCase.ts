@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { Servicos } from "../../../entities/Servicos";
-import { IServicosRepository } from "../../../repositories/IServicosRepository";
+import { Servicos } from "../../entities/Servicos";
+import { IServicosRepository } from "../../repositories/IServicosRepository";
 
 @injectable()
 class GetServicosUseCase {
