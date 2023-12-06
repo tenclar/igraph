@@ -9,6 +9,12 @@ class ServicoRepository implements IServicosRepository {
   constructor() {
     this.repository = getRepository(Servicos);
   }
+  findById(id: number): Promise<Servicos | undefined> {
+    throw new Error("Method not implemented.");
+  }
+  save(servico: Servicos): Promise<Servicos[]> {
+    throw new Error("Method not implemented.");
+  }
 
   async create({ nome }: ICreateServicosDTO): Promise <void> {
     const servico = this.repository.create({

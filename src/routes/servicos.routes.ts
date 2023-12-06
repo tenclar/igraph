@@ -13,5 +13,5 @@ const updateServicosController = new UpdateServicosController()
 //servicosRoutes.use(ensureAuthenticated)
 servicosRoutes.post("/", createServicosController.handle);
 servicosRoutes.get("/", getServicosController.handle);
-servicosRoutes.get("/", updateServicosController.handle);
+servicosRoutes.put("/", updateServicosController.handle);
 export { servicosRoutes };

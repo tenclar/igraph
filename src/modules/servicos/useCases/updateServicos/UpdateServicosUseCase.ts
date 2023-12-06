@@ -1,6 +1,4 @@
-import { inject, injectable } from "tsyringe";
 import { IServicosRepository } from "../../repositories/IServicosRepository";
-import { ServicoRepository } from "../../repositories/implementations/ServicoRepository";
 import { AppError } from "../../../../errors/AppError";
 
 interface IRequest {
