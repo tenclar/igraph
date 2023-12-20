@@ -15,6 +15,7 @@ interface IAtendimentoRepository {
   listByYear(ano:number): Promise<Atendimento[]>;  
   listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]>
   listAll(): Promise<Atendimento[]>
+  listAtendimentoByParams(unidadeId:number, dataInicio: Date, dataFim: Date ): Promise<Atendimento[]>
 
   //  listMonthByYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
 
