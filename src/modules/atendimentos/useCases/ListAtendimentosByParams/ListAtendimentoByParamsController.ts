@@ -32,6 +32,8 @@ class ListAtendimentoByParamsController {
       data_atendimento : atendimento.data_de_atendimento,
       
       unidade: atendimento.unidades_id || "", // Ajuste conforme necessário
+      quantidade: atendimento.quantidade,
+      usuario: atendimento.usuarios_id
     }));
 
     return res.json(atendimentosData);
