@@ -79,13 +79,20 @@ class AtendimentoRepository implements IAtendimentoRepository {
   
   async listAtendimentoByParams(unidadeId: number, dataInicio: Date, dataFim: Date): Promise<Atendimento[]> {
     const atendimentos = await this.repository.createQueryBuilder("atendimento")
-      .where("atendimento.unidades_id = :unidadeId", { unidadeId })
-      .andWhere("atendimento.data_de_atendimento BETWEEN :dataInicio AND :dataFim", { dataInicio, dataFim })
-      .getMany();
-      
+    .where("atendimento.unidades_id = :unidadeId", { unidadeId })
+    .andWhere("atendimento.data_de_atendimento BETWEEN :dataInicio AND :dataFim", { dataInicio, dataFim })
+    .getMany();
+    
     return atendimentos;
   }
   
+  async listAtendimentoByDate(dataInicio: Date, dataFim: Date): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.createQueryBuilder("atendimento")
+    .where("atendimento.data_de_atendimento BETWEEN :dataInicio AND :dataFim", { dataInicio, dataFim })
+    .getMany();
+    
+    return atendimentos
+  }
   
 
   async delete(atendimento: Atendimento): Promise<void> {
