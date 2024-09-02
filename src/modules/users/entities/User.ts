@@ -37,6 +37,7 @@ class User {
   @CreateDateColumn()
   updated_at: Date;
 
+
 }
 
 export { User };

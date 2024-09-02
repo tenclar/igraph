@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, Generated, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Servicos } from "../../servicos/entities/Servicos";
 import { Unidades } from "../../unidade/entities/Unidades";
+import { Comentarios } from "../../comentarios/entities/Comentarios";
 import { User } from "../../users/entities/User";
 
 @Entity("atendimentos")
@@ -37,6 +38,9 @@ class Atendimento {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'usuarios_id' })
   usuario: User;
+
+  @OneToMany(() => Comentarios, (comentario) => comentario.atendimento)
+  comentarios: Comentarios[];
 
 
   @CreateDateColumn()

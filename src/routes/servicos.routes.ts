@@ -16,5 +16,5 @@ const deleteServicoController = new DeleteServicoController()
 servicosRoutes.post("/", createServicosController.handle);
 servicosRoutes.get("/", getServicosController.handle);
 servicosRoutes.put("/:id", updateServicosController.handle);
-servicosRoutes.delete("/:id", deleteServicoController.handle)
+servicosRoutes.delete("/:id", deleteServicoController.handle);
 export { servicosRoutes };

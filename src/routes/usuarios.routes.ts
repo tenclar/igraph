@@ -4,6 +4,7 @@ import { CreateUserController } from "../modules/users/useCases/createUser/Creat
 import { ListUserControlller } from "../modules/users/useCases/listUsers/ListUsersController";
 import { ImportUserController } from "../modules/users/useCases/importUser/ImportUserController";
 import { UpdateUserController } from "../modules/users/useCases/updateUser/UpdateUserController";
+import { DeleteUserController } from "../modules/users/useCases/deleteUser/DeleteUserController";
 //Rota usuario
 
 const usuariosRoutes = Router();
@@ -17,7 +18,7 @@ const createUserController = new CreateUserController();
 const importUserController = new ImportUserController();
 const listUserController = new ListUserControlller();
 const updateUserController = new UpdateUserController()
-
+const deleteUserController = new DeleteUserController()
 
 //Rota para criação de usuarios
 usuariosRoutes.post("/", createUserController.handle);
@@ -32,5 +33,7 @@ usuariosRoutes.post(
   upload.single("file"),
   importUserController.handle
 );
+
+usuariosRoutes.delete('/:id', deleteUserController.handle);
 
 export { usuariosRoutes };

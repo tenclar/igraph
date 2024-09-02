@@ -9,6 +9,7 @@ interface IUsersRepository {
   save(usuario: User) : Promise<User[]>
   list(): Promise <User[]>;
   create({nome, nivel, nickname, status, password, email}: ICreateUserDTO): void ;
+  delete(usuario: User): Promise<void>
 }
 
 export { IUsersRepository };

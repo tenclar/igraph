@@ -5,7 +5,7 @@ interface IServicosRepository {
   findByName(nome: string): Promise<Servicos | undefined>;
   findById(id: number): Promise<Servicos | undefined>
   save(servico: Servicos): Promise<Servicos[]>
-  list(): Promise<Servicos[]>; // Fixed the typo here
+  list(): Promise<Servicos[]>; 
   delete(servico: Servicos): Promise<void>
   create({ nome }: ICreateServicosDTO): void;
 }

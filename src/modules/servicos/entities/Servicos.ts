@@ -15,6 +15,7 @@ class Servicos {
 
     @CreateDateColumn()
     updated_at: Date;
+  
 }
 
 export { Servicos };

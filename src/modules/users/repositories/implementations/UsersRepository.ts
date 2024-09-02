@@ -11,6 +11,9 @@ class UsersRepository implements IUsersRepository {
   constructor() {
     this.repository = getRepository(User);
   }
+  async delete(usuario: User): Promise<void> {
+    await this.repository.remove(usuario);
+  }
   save(usuario: User): Promise<User[]> {
     throw new Error("Method not implemented.");
   }

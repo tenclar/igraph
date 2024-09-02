@@ -13,6 +13,7 @@ const router = Router();
 router.get("/", (request, response) => {
   return response.json({ message: "ok" });
 });
+router.use('/auth', authenticateRoutes)
 router.use("/unidades", unidadeRoutes);
 router.use("/servicos", servicosRoutes);
 router.use("/usuarios", usuariosRoutes);

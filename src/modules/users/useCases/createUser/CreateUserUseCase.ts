@@ -8,7 +8,7 @@ interface IRequest {
   nome: string;
   nivel: number;
   nickname: string;
-  status: string;
+  status: number;
   password: string;
   email: string;
 }
@@ -29,10 +29,10 @@ class CreateUserUseCase {
     //Cripitografia de senha
     const passwordHash = await hash(password, 8 )
 
-    if (nicknameAlreadyExists || emailAlreadyExistis) {
-      throw new AppError("User already exists!");
-    }
-     await this.usuariosRepository.create({nome, nivel,nickname, status, password: passwordHash, email});
+      if (nicknameAlreadyExists || emailAlreadyExistis) {
+        throw new AppError("User already exists!");
+      }
+      await this.usuariosRepository.create({nome, nivel,nickname, status, password: passwordHash, email});
   }
 }
 

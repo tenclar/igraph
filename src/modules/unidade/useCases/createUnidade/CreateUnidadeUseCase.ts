@@ -7,23 +7,23 @@ interface IRequest {
   data_inaugural: Date;
 }
 
-//Repositorio da tabela de unidades OCA
 @injectable()
 class CreateUnidadeUseCase {
   constructor(
     @inject("UnidadeRepository")
-    private unitRepository: IUnidadeRepository) {}
-  async execute({nome, data_inaugural}: IRequest): Promise<void> {
-    const unidadeAlreadyExists = await this.unitRepository.findByName(nome);
-    
+    private unidadeRepository: IUnidadeRepository
+  ) {}
+
+  async execute({ nome, data_inaugural }: IRequest): Promise<void> {
+    const unidadeAlreadyExists = await this.unidadeRepository.findByName(nome);
 
     if (unidadeAlreadyExists) {
       throw new AppError("Unidade Ja existe");
-    
-  }
-    await this.unitRepository.create({
+    }
+
+    await this.unidadeRepository.create({
       nome,
-      data_inaugural
+      data_inaugural,
     });
   }
 }

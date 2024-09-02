@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity("unidades")
 class Unidades {
@@ -10,14 +10,15 @@ class Unidades {
     @Column()
     nome: string;
 
-    @CreateDateColumn()
+    @Column()
     data_inaugural: Date;
 
     @CreateDateColumn()
     created_at: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updated_at: Date;
+  
 }
 
 export { Unidades };
