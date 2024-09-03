@@ -11,6 +11,23 @@ class AtendimentoRepository implements IAtendimentoRepository {
     this.repository = getRepository(Atendimento);
   }
 
+  async listByUnidade(unidadesId: string): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.find({
+      where: {
+        unidades_id: unidadesId,
+      },
+      relations: ['unidade', 'servico', 'usuario', 'comentarios']
+    });
+    
+    
+    console.log(atendimentos);  // Adicione este log para depurar
+    
+    return atendimentos;
+  }
+  
+
+
+
   save(atendimento: Atendimento): Promise<Atendimento> {
     throw new Error("Method not implemented.");
   }

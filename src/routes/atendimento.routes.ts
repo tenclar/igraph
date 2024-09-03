@@ -8,6 +8,7 @@ import { ListAtendimentosByDateController } from "../modules/atendimentos/useCas
 import { UpdateAtendimentoController } from "../modules/atendimentos/useCases/updateAtendimento/UpdateAtendimentoController";
 import { DeleteAtendimentoController } from "../modules/atendimentos/useCases/deleteAtendimento/DeleteAtendimentoController";
 import { ListAtendimentoByParamsController } from "../modules/atendimentos/useCases/ListAtendimentosByParams/ListAtendimentoByParamsController";
+import { ListAtendimentoByUnidadeController } from "../modules/atendimentos/useCases/listAtendimentoByUnidade/ListAtendimentobyUnidadeController";
 
 const atendimentoRoutes = Router();
 
@@ -20,6 +21,7 @@ const updateAtendimentoController = new UpdateAtendimentoController()
 const deleteAtendimentoController = new DeleteAtendimentoController(); 
 const listAtendimentoByParamsController = new ListAtendimentoByParamsController(); // Adicione o novo controlador
 const listAtendimentosByDateController = new ListAtendimentosByDateController();
+const listAtendimentoByUnidadeController = new ListAtendimentoByUnidadeController();
 
 atendimentoRoutes.post("/", createAtendimentoController.handle);
 
@@ -29,7 +31,12 @@ atendimentoRoutes.get("/:mes/:ano", listAtendimentoByMouthAndYear.handle)
 atendimentoRoutes.get("/:unidadeId/:ano/:mes", listAtendimentoByUnidadeIdMonthYearController.handle)
 atendimentoRoutes.post('/:unidadeId/:dataInicio/:dataFim', listAtendimentoByParamsController.handle); // Adicione esta linha para o novo endpoint
 atendimentoRoutes.post('/:dataInicio/:dataFim', listAtendimentosByDateController.handle); 
-atendimentoRoutes.get('/:unidadeId', listAtendimentoByParamsController.handle);
+//atendimentoRoutes.get('/:unidadeId', listAtendimentoByUnidadeController.handle);
+atendimentoRoutes.get(
+    "/unidades/:id",
+    listAtendimentoByUnidadeController.handle
+  );
+  
 
 
 
