@@ -32,12 +32,7 @@ atendimentoRoutes.get("/:unidadeId/:ano/:mes", listAtendimentoByUnidadeIdMonthYe
 atendimentoRoutes.post('/:unidadeId/:dataInicio/:dataFim', listAtendimentoByParamsController.handle); // Adicione esta linha para o novo endpoint
 atendimentoRoutes.post('/:dataInicio/:dataFim', listAtendimentosByDateController.handle); 
 //atendimentoRoutes.get('/:unidadeId', listAtendimentoByUnidadeController.handle);
-atendimentoRoutes.get(
-    "/unidades/:id",
-    listAtendimentoByUnidadeController.handle
-  );
-  
-
+atendimentoRoutes.get("/unidades/:id", listAtendimentoByUnidadeController.handle);
 
 
 atendimentoRoutes.put("/:id", updateAtendimentoController.handle);

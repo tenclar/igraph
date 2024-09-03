@@ -14,16 +14,17 @@ class AtendimentoRepository implements IAtendimentoRepository {
   async listByUnidade(unidadesId: string): Promise<Atendimento[]> {
     const atendimentos = await this.repository.find({
       where: {
-        unidades_id: unidadesId,
+        unidades_id: unidadesId, // Verifique se isso corresponde ao nome do campo no banco de dados
       },
       relations: ['unidade', 'servico', 'usuario', 'comentarios']
     });
-    
-    
-    console.log(atendimentos);  // Adicione este log para depurar
-    
+  
+    console.log(`Atendimentos encontrados na base de dados: ${JSON.stringify(atendimentos)}`); // Adicione um log
+  
     return atendimentos;
   }
+  
+  
   
 
 
