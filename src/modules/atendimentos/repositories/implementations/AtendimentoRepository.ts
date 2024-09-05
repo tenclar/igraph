@@ -11,18 +11,14 @@ class AtendimentoRepository implements IAtendimentoRepository {
     this.repository = getRepository(Atendimento);
   }
 
-  async listByUnidade(unidadesId: string): Promise<Atendimento[]> {
-    const atendimentos = await this.repository.find({
-      where: {
-        unidades_id: unidadesId, // Verifique se isso corresponde ao nome do campo no banco de dados
-      },
-      relations: ['unidade', 'servico', 'usuario', 'comentarios']
+  async listByUnidade(unidade: number): Promise<Atendimento[]> {
+    return this.repository.find({
+      where: { unidade: { id: unidade } },
+      relations: ["comentarios", "unidade", "servico", "usuario"],
     });
-  
-    console.log(`Atendimentos encontrados na base de dados: ${JSON.stringify(atendimentos)}`); // Adicione um log
-  
-    return atendimentos;
   }
+  
+  
   
   
   
@@ -90,13 +86,16 @@ class AtendimentoRepository implements IAtendimentoRepository {
   }
 
   async listByYear(ano: number): Promise<Atendimento[]> {
-    const atendimentos = await this.repository
+    return this.repository
       .createQueryBuilder("atendimento")
       .where("YEAR(atendimento.data_de_atendimento) = :ano", { ano })
+      .leftJoinAndSelect("atendimento.comentarios", "comentarios")
+      .leftJoinAndSelect("atendimento.unidade", "unidade")
+      .leftJoinAndSelect("atendimento.servico", "servico")
+      .leftJoinAndSelect("atendimento.usuario", "usuario")
       .getMany();
-
-    return atendimentos;
   }
+  
 
   async listByMonthAndYear(mes: number, ano: number): Promise<Atendimento[]> {
     const atendimentos = await this.repository
