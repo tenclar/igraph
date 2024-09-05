@@ -8,6 +8,7 @@ class ListAllAtendimentoController {
 
     const atendimentos = await listAllAtendimentoUseCase.execute();
 
+    
     return response.json(atendimentos);
   }
 }

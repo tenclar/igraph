@@ -64,9 +64,17 @@ class AtendimentoRepository implements IAtendimentoRepository {
   
 
   async findOne(id: number): Promise<Atendimento | undefined> {
-    const atendimentos = this.repository.findOne(id);
-    return atendimentos;
+    return this.repository
+      .createQueryBuilder("atendimento")
+      .leftJoinAndSelect("atendimento.comentarios", "comentarios")
+      .leftJoinAndSelect("atendimento.unidade", "unidade")
+      .leftJoinAndSelect("atendimento.servico", "servico")
+      .leftJoinAndSelect("atendimento.usuario", "usuario")
+      .where("atendimento.id = :id", { id })
+      .getOne();
   }
+  
+  
 
   async findByDateAndUnidade(
     data_de_atendimento: Date,
