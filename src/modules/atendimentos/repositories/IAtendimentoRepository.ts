@@ -9,7 +9,7 @@ interface IAtendimentoRepository {
   deleteRelatedComentarios(atendimento: Atendimento): Promise<void>; // Adicione esta linha
 
   // findOne(comentarios: string): Promise<Atendimento | undefined>;
-  listByUnidade(unidade: number): Promise<Atendimento[]>;
+  listByUnidade(unidadeId: number): Promise<Atendimento[]>;
   findByDateAndUnidade(data_de_atendimento: Date, unidadesId: number): Promise<Atendimento | undefined>
   listByUnidadeIdMonthYear(unidadeId: number, mes: number, ano: number): Promise<Atendimento[]>;
   listByYear(ano:number): Promise<Atendimento[]>;  

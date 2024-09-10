@@ -9,19 +9,26 @@ import { ListAtendimentoByUnidadeIdMonthYearController } from "../modules/atendi
 import { ListAtendimentoByYearController } from "../modules/atendimentos/useCases/listAtendimentoYear/ListAtendimentoYearController";
 import { ListAtendimentosByDateController } from "../modules/atendimentos/useCases/listAtendimentosByDate/ListAtendimentosByDateController";
 import { ListAtendimentoByParamsController } from "../modules/atendimentos/useCases/ListAtendimentosByParams/ListAtendimentoByParamsController";
+import { ListAtendimentoByUnidadeIdController } from "../modules/atendimentos/useCases/listAtendimentoByUnidadeId/ListAtendimentoByUnidadeIdController";
+import { ListAtendimentoByUnidadeIdUseCase } from "../modules/atendimentos/useCases/listAtendimentoByUnidadeId/ListAtendimentoByUnidadeIdUseCase";
 
 const atendimentoRoutes = Router();
 
-const createAtendimentoController = new CreateAtendimentoController()
+const createAtendimentoController = new CreateAtendimentoController();
+
+const listAllAtendimentoController =  new ListAllAtendimentoController();
+const getAtendimentoById = new GetAtendimentoByIdController(); //Funcionando
+const listAtendimentoByYearController = new ListAtendimentoByYearController();
+const listAtendimentoByMouthAndYear = new ListAtendimentoByMonthAndYearController(); //Funcionando
+const listAtendimentoByUnidadeIdController = new ListAtendimentoByUnidadeIdController();
+
+const updateAtendimentoController = new UpdateAtendimentoController(); //Funcionando
+const deleteAtendimentoController = new DeleteAtendimentoController(); //Funcionando
+
+
 //const listAtendimentoByUnidadeIdMonthYearController = new ListAtendimentoByUnidadeIdMonthYearController()
-const listAllAtendimentoController =  new ListAllAtendimentoController()
-const listAtendimentoByYearController = new ListAtendimentoByYearController()
-const listAtendimentoByMouthAndYear = new ListAtendimentoByMonthAndYearController() //Funcionando
-const updateAtendimentoController = new UpdateAtendimentoController()
-const deleteAtendimentoController = new DeleteAtendimentoController(); 
 //const listAtendimentoByParamsController = new ListAtendimentoByParamsController(); 
 //const listAtendimentosByDateController = new ListAtendimentosByDateController();
-const getAtendimentoById = new GetAtendimentoByIdController() //Funcionando
 
 atendimentoRoutes.post("/", createAtendimentoController.handle);
 
@@ -29,6 +36,7 @@ atendimentoRoutes.get("/", listAllAtendimentoController.handle)
 atendimentoRoutes.get('/:id', getAtendimentoById.handle);
 atendimentoRoutes.get("/ano/:ano", listAtendimentoByYearController.handle)
 atendimentoRoutes.get("/:mes/:ano", listAtendimentoByMouthAndYear.handle)
+atendimentoRoutes.get('/unidades/:unidadeId', listAtendimentoByUnidadeIdController.handle)
 //atendimentoRoutes.get("/:unidadeId/:ano/:mes", listAtendimentoByUnidadeIdMonthYearController.handle)
 //atendimentoRoutes.post('/:unidadeId/:dataInicio/:dataFim', listAtendimentoByParamsController.handle); // Adicione esta linha para o novo endpoint
 //atendimentoRoutes.post('/:dataInicio/:dataFim', listAtendimentosByDateController.handle); 

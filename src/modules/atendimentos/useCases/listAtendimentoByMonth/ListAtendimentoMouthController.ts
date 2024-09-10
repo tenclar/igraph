@@ -8,7 +8,10 @@ class ListAtendimentoByMonthAndYearController {
 
     const listAtendimentoByYearUseCase = container.resolve(ListAtendimentoByMonthAndYearUseCase);
 
-    const atendimentos = await listAtendimentoByYearUseCase.execute({ mes: Number(mes), ano: Number(ano) });
+    const atendimentos = await listAtendimentoByYearUseCase.execute({
+      mes: Number(mes),
+      ano: Number(ano),
+    });
 
     return response.json(atendimentos);
   }

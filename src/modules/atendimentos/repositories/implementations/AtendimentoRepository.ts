@@ -11,11 +11,10 @@ class AtendimentoRepository implements IAtendimentoRepository {
     this.repository = getRepository(Atendimento);
   }
 
-  async listByUnidade(unidade: number): Promise<Atendimento[]> {
-    return this.repository.find({
-      where: { unidade: { id: unidade } },
-      relations: ["comentarios", "unidade", "servico", "usuario"],
-    });
+  async listByUnidade(unidadeId: number): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.find({ where: { unidades_id: unidadeId } });
+    console.log('ts')
+    return atendimentos;
   }
   
   
