@@ -1,14 +1,42 @@
 import { getRepository, Repository } from "typeorm";
 import { ICreateAtendimentoDTO } from "../../dtos/IcreateAtendimentoDTO";
 import { Atendimento } from "../../entities/Atendimento";
-import { IAtendimentoRepository } from "../IAtendimentoRepository";
+import { IAtendimentoRepository, IRequest } from "../IAtendimentoRepository";
 import { Comentarios } from "../../../comentarios/entities/Comentarios";
+
+
+
 
 class AtendimentoRepository implements IAtendimentoRepository {
   private repository: Repository<Atendimento>;
 
   constructor() {
     this.repository = getRepository(Atendimento);
+  }
+  async listWithFilters(filters: IRequest): Promise<Atendimento[]> {
+    const query = this.repository.createQueryBuilder('atendimento');
+
+    if (filters.mes) {
+      query.andWhere('MONTH(atendimento.data_de_atendimento) = :mes', { mes: filters.mes });
+    }
+
+    if (filters.ano) {
+      query.andWhere('YEAR(atendimento.data_de_atendimento) = :ano', { ano: filters.ano });
+    }
+
+    if (filters.unidade_id) {
+      query.andWhere('atendimento.unidades_id = :unidade_id', { unidade_id: filters.unidade_id });
+    }
+
+    if (filters.servico_id) {
+      query.andWhere('atendimento.servicos_id = :servico_id', { servico_id: filters.servico_id });
+    }
+
+    if (filters.usuario_id) {
+      query.andWhere('atendimento.usuarios_id = :usuario_id', { usuario_id: filters.usuario_id });
+    }
+
+    return await query.getMany();
   }
 
   async listByUnidade(unidadeId: number): Promise<Atendimento[]> {

@@ -6,6 +6,7 @@ import { authenticateRoutes } from "./authenticate.routes";
 import { atendimentoRoutes } from "./atendimento.routes";
 import { auditoriaRoutes } from "./auditoria.routes";
 import { comentariosRoutes } from "./comentarios.routes";
+import { relatorioRoutes } from "./relatorio.routes";
 
 /* Nossas rotas ficam aqui e são exportadas para o nosso server.ts  */
 
@@ -21,6 +22,7 @@ router.use(authenticateRoutes);
 router.use("/atendimentos", atendimentoRoutes);
 router.use("/auditoria", auditoriaRoutes);
 router.use("/comentarios", comentariosRoutes);
+router.use('/relatorios', relatorioRoutes)
 
 export { router };
 //nivel, nome, nickname, status, password, email
