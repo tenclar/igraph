@@ -16,6 +16,7 @@ class AtendimentoRepository implements IAtendimentoRepository {
   async listWithFilters(filters: IRequest): Promise<Atendimento[]> {
     const query = this.repository.createQueryBuilder('atendimento');
 
+    
     if (filters.mes) {
       query.andWhere('MONTH(atendimento.data_de_atendimento) = :mes', { mes: filters.mes });
     }

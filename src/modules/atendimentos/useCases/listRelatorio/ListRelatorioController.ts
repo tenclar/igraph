@@ -43,6 +43,8 @@ class ListRelatorioController {
     const relatorio = await listRelatorioUseCase.execute({ servico_id: Number(servico_id) });
     return response.json(relatorio);
   }
+
+  
 }
 
 export { ListRelatorioController };
