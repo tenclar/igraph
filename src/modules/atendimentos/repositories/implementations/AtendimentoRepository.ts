@@ -14,7 +14,9 @@ class AtendimentoRepository implements IAtendimentoRepository {
     this.repository = getRepository(Atendimento);
   }
   async listWithFilters(filters: IRequest): Promise<Atendimento[]> {
-    const query = this.repository.createQueryBuilder('atendimento');
+    const query = this.repository.createQueryBuilder('atendimento')
+    .leftJoinAndSelect('atendimento.unidade', 'unidade')
+    .leftJoinAndSelect('atendimento.servico', 'servico');
 
     
     if (filters.mes) {
