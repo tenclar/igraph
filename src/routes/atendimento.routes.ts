@@ -11,6 +11,7 @@ import { ListAtendimentosByDateController } from "../modules/atendimentos/useCas
 import { ListAtendimentoByParamsController } from "../modules/atendimentos/useCases/ListAtendimentosByParams/ListAtendimentoByParamsController";
 import { ListAtendimentoByUnidadeIdController } from "../modules/atendimentos/useCases/listAtendimentoByUnidadeId/ListAtendimentoByUnidadeIdController";
 import { ListAtendimentoByUnidadeIdUseCase } from "../modules/atendimentos/useCases/listAtendimentoByUnidadeId/ListAtendimentoByUnidadeIdUseCase";
+import { ListAtendimentoByServiceController } from "../modules/atendimentos/useCases/listAtendimentoByService/ListAtendimentoByServiceController";
 
 const atendimentoRoutes = Router();
 
@@ -21,6 +22,7 @@ const getAtendimentoById = new GetAtendimentoByIdController(); //Funcionando
 const listAtendimentoByYearController = new ListAtendimentoByYearController();
 const listAtendimentoByMouthAndYear = new ListAtendimentoByMonthAndYearController(); //Funcionando
 const listAtendimentoByUnidadeIdController = new ListAtendimentoByUnidadeIdController();
+const listAtendimentoByServiceController = new ListAtendimentoByServiceController();
 
 const updateAtendimentoController = new UpdateAtendimentoController(); //Funcionando
 const deleteAtendimentoController = new DeleteAtendimentoController(); //Funcionando
@@ -37,6 +39,7 @@ atendimentoRoutes.get('/:id', getAtendimentoById.handle);
 atendimentoRoutes.get("/ano/:ano", listAtendimentoByYearController.handle)
 atendimentoRoutes.get("/:mes/:ano", listAtendimentoByMouthAndYear.handle)
 atendimentoRoutes.get('/unidades/:unidadeId', listAtendimentoByUnidadeIdController.handle)
+atendimentoRoutes.get('/atendimentos/servico/:servicoId', listAtendimentoByServiceController.handle);
 //atendimentoRoutes.get("/:unidadeId/:ano/:mes", listAtendimentoByUnidadeIdMonthYearController.handle)
 //atendimentoRoutes.post('/:unidadeId/:dataInicio/:dataFim', listAtendimentoByParamsController.handle); // Adicione esta linha para o novo endpoint
 //atendimentoRoutes.post('/:dataInicio/:dataFim', listAtendimentosByDateController.handle); 

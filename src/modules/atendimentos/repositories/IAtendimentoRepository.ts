@@ -25,6 +25,8 @@ interface IAtendimentoRepository {
   listAll(): Promise<Atendimento[]>;
   listAtendimentoByParams(unidadeId:number, dataInicio: Date, dataFim: Date): Promise<Atendimento[]>;
   listAtendimentoByDate(dataInicio:Date, dataFim:Date): Promise<Atendimento[]>;
+  findByServiceId(servico_id: number): Promise<Atendimento[]>
+
 }
 
 export { IAtendimentoRepository, IRequest };

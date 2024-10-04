@@ -17,12 +17,12 @@ class AtendimentoRepository implements IAtendimentoRepository {
     const query = this.repository.createQueryBuilder('atendimento')
     .leftJoinAndSelect('atendimento.unidade', 'unidade')
     .leftJoinAndSelect('atendimento.servico', 'servico');
-
+    
     
     if (filters.mes) {
       query.andWhere('MONTH(atendimento.data_de_atendimento) = :mes', { mes: filters.mes });
     }
-
+    
     if (filters.ano) {
       query.andWhere('YEAR(atendimento.data_de_atendimento) = :ano', { ano: filters.ano });
     }
@@ -30,18 +30,18 @@ class AtendimentoRepository implements IAtendimentoRepository {
     if (filters.unidade_id) {
       query.andWhere('atendimento.unidades_id = :unidade_id', { unidade_id: filters.unidade_id });
     }
-
+    
     if (filters.servico_id) {
       query.andWhere('atendimento.servicos_id = :servico_id', { servico_id: filters.servico_id });
     }
-
+    
     if (filters.usuario_id) {
       query.andWhere('atendimento.usuarios_id = :usuario_id', { usuario_id: filters.usuario_id });
     }
-
+    
     return await query.getMany();
   }
-
+  
   async listByUnidade(unidadeId: number): Promise<Atendimento[]> {
     const atendimentos = await this.repository.find({ where: { unidades_id: unidadeId } });
     console.log('ts')
@@ -50,14 +50,17 @@ class AtendimentoRepository implements IAtendimentoRepository {
   
   
   
-  
-  
+  async findByServiceId(servico_id: number): Promise<Atendimento[]> {
+    const atendimentos = await this.repository.find({where: {servicos_id: servico_id}});
+    return atendimentos;
+  }
 
-
+  
 
   save(atendimento: Atendimento): Promise<Atendimento> {
     throw new Error("Method not implemented.");
   }
+  
 
   async create({
     data_de_atendimento,
