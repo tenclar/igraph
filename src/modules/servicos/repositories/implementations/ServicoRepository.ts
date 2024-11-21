@@ -10,13 +10,17 @@ class ServicoRepository implements IServicosRepository {
     this.repository = getRepository(Servicos);
   }
   
-  save(servico: Servicos): Promise<Servicos[]> {
-    throw new Error("Method not implemented.");
+ 
+
+  async save(servico: Servicos): Promise<Servicos>{
+    return await this.repository.save(servico)
   }
   
   async findById(id: number): Promise<Servicos | undefined> {
-    const servico = await this.repository.findOne({id});
-    return servico
+    const servico = await this.repository.findOne({
+      where:{id},
+    });
+    return servico || undefined
   }
   async create({ nome }: ICreateServicosDTO): Promise <void> {
     const servico = this.repository.create({
@@ -35,13 +39,15 @@ class ServicoRepository implements IServicosRepository {
   }
 
   async findByName(nome: string): Promise<Servicos | undefined> {
-    const servicos = await this.repository.findOne({ nome });
+    const servicos = await this.repository.findOne({ 
+      where: {nome}
+     });
 
    /*  if (!servicos) {
       throw new Error(`Servico with name ${nome} not found`);
     } */
 
-    return servicos;
+    return servicos || undefined;
   }
 }
 

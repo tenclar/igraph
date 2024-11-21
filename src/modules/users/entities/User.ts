@@ -3,6 +3,9 @@ import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn } f
 
 @Entity("users")
 class User {
+  static findOne(arg0: { where: { nickname: any; }; }) {
+    throw new Error("Method not implemented.");
+  }
   
   @Generated("increment")
   @PrimaryGeneratedColumn()

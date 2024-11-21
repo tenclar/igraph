@@ -2,68 +2,62 @@ import { getRepository, Repository } from "typeorm";
 import { ICreateUserDTO } from "../../dtos/IcreateUserDTO";
 import { User } from "../../entities/User";
 import { IUsersRepository } from "../IUsersRepository";
+import { hash } from "bcrypt";
+import { AppError } from "../../../../errors/AppError";
 
-//USUARIO VIROU USERS
-// classe Usuario Repository exportada para usuario.routes
 class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
 
   constructor() {
     this.repository = getRepository(User);
   }
+
+
   async delete(usuario: User): Promise<void> {
     await this.repository.remove(usuario);
   }
-  save(usuario: User): Promise<User[]> {
-    throw new Error("Method not implemented.");
+
+  async save(usuario: User): Promise<User> {
+    return this.repository.save(usuario);
   }
 
-  async create({
-    id,
-    nome,
-    nivel,
-    nickname,
-    status,
-    password,
-    email,
-  }: ICreateUserDTO): Promise<void> {
-    const users = this.repository.create({
-      id,
-      nome,
-      nivel,
-      nickname,
-      status,
-      password,
-      email,
-    });
-    await this.repository.save(users);
-  }
+  async create(data: ICreateUserDTO): Promise<User> {
+    const existingUser = await this.findByNick(data.nickname) || await this.findByEmail(data.email);
 
-  // consulta para realizar listagem de usuarios que foram criados pelo adm
-  async list(): Promise<User[]> {
-    const user = await this.repository.find();
+    if (existingUser) {
+      throw new AppError("Nickname or Email already exists", 400);
+    }
+
+    const hashedPassword = await hash(data.password, 10);
+    const user = this.repository.create({ ...data, password: hashedPassword });
+    await this.repository.save(user);
     return user;
   }
 
-  // fazer consulta atravez do nome do usuario
+  async list(): Promise<User[]> {
+    return this.repository.find();
+  }
+
   async findByName(nome: string): Promise<User | undefined> {
-    const usuario = await this.repository.findOne({ nome });
-    return usuario;
+    const user = await this.repository.findOne({ where: { nome } });
+    return user || undefined;
   }
+  
   async findByNick(nickname: string): Promise<User | undefined> {
-    const usuario = await this.repository.findOne({ nickname });
-    return usuario;
+    const user = await this.repository.findOne({ where: { nickname } });
+    return user || undefined;
   }
+  
   async findByEmail(email: string): Promise<User | undefined> {
-    const usuario = await this.repository.findOne({ email });
-    return usuario;
+    const user = await this.repository.findOne({ where: { email } });
+    return user || undefined;
   }
-
+  
   async findById(id: number): Promise<User | undefined> {
-    const usuario = await this.repository.findOne({ id });
-    return usuario;
+    const user = await this.repository.findOne({ where: { id } });
+    return user || undefined;
   }
-
   
 }
+
 export { UsersRepository };
