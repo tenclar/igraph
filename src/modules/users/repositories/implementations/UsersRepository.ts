@@ -28,8 +28,10 @@ class UsersRepository implements IUsersRepository {
       throw new AppError("Nickname or Email already exists", 400);
     }
 
-    const hashedPassword = await hash(data.password, 10);
-    const user = this.repository.create({ ...data, password: hashedPassword });
+    
+    //const hashedPassword = await (data.password, 10);
+    const user = this.repository.create({ ...data, password: data.password });
+    
     await this.repository.save(user);
     return user;
   }

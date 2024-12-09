@@ -27,12 +27,12 @@ class CreateUserUseCase {
 
     const emailAlreadyExistis = await this.usuariosRepository.findByEmail(email)
     //Cripitografia de senha
-    const passwordHash = await hash(password, 8 )
+    //const passwordHash = await hash(password, 8 )
 
       if (nicknameAlreadyExists || emailAlreadyExistis) {
         throw new AppError("User already exists!");
       }
-      await this.usuariosRepository.create({nome, nivel,nickname, status, password: passwordHash, email});
+      await this.usuariosRepository.create({nome, nivel,nickname, status, password, email});
   }
 }
 

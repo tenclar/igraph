@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm';
+import * as path from 'path';
 
 const AppDataSource = new DataSource({
   type: "mysql",
@@ -7,8 +8,8 @@ const AppDataSource = new DataSource({
   username: "andreysson",
   password: "senha",
   database: "igraph",
-  entities: [__dirname + '/modules/**/*/entities/*.ts'], // Ajuste para o caminho correto
-  migrations: [__dirname + '/database/migrations/*.ts'], // Caminho das migrações
+  entities: [path.resolve(__dirname, 'modules/**/*/entities/*.ts')], // Usando path.resolve
+  migrations: [path.resolve(__dirname, 'database/migrations/*.ts')], // Usando path.resolve
   synchronize: false, // Altere para true apenas em desenvolvimento
 });
 
