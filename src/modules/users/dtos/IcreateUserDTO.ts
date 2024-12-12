@@ -3,8 +3,8 @@ interface ICreateUserDTO {
     password: string;
     email: string;
     nickname: string;
-    nivel: number;
-    status:number;
+    nivel: boolean;
+    status: boolean;
     id?: number;
     avatar?: string;
 }

@@ -6,9 +6,9 @@ import { AppError } from "../../../../errors/AppError";
 
 interface IRequest {
   nome: string;
-  nivel: number;
+  nivel: boolean;
   nickname: string;
-  status: number;
+  status: boolean;
   password: string;
   email: string;
 }

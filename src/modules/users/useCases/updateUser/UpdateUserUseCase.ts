@@ -5,8 +5,8 @@ interface UpdateUserRequest {
   nome: string;
   nickname: string;
   password: string;
-  nivel: number;
-  status: number;
+  nivel: boolean;
+  status: boolean;
 }
 
 class UpdateUserUseCase {
@@ -24,7 +24,6 @@ class UpdateUserUseCase {
     usuario.nome = nome;
     usuario.nivel = nivel;
     usuario.status = status;
-    //adcionado para teste
     usuario.nickname = nickname;
     usuario.password = password
 

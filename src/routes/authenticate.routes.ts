@@ -42,7 +42,7 @@ authenticateRoutes.post("/auth", async (req: Request, res: Response) => {
     }
 
     // Verifique o status do usuário
-    if (user.status !== 1) {
+    if (user.status !== false) {
       return res.status(403).json({ message: "Usuário inativo." });
     }
 

@@ -25,7 +25,7 @@ class User {
   nivel: boolean;
 
   @Column()
-  status: number;
+  status: boolean;
 
   // Se precisar de avatar, use a seguinte definição:
   // @Column({ nullable: true })

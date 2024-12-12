@@ -5,9 +5,9 @@ import { inject, injectable } from "tsyringe";
 //interface
 interface IImportUser {
   nome: string;
-  nivel: string;
+  nivel: boolean;
   nickname: string;
-  status: number;
+  status: boolean;
   password: string;
   email: string;
 }

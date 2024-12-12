@@ -20,7 +20,7 @@ export class CreateUsers1678974838040 implements MigrationInterface {
           },
           {
             name: "nivel",
-            type:"int",     
+            type:"boolean",     
           },
           {
             name: "nickname",
@@ -29,7 +29,7 @@ export class CreateUsers1678974838040 implements MigrationInterface {
           },
           {
             name: "status",
-            type: "varchar",
+            type: "boolean",
           },
           {
             name: "email",
